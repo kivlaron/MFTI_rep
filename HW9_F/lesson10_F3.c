@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 {
     char input_num[1000];
     int quant[10] = {0};
-    scanf("%s", input_num);
+    scanf("%[0-9]", input_num);
     filling(input_num, quant);
     print(quant);
 }
