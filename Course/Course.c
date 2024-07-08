@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
             case 'h':
                 printf("-f entering the file name\n");
                 printf("-m entering the month number\n");
-                break;
+                exit(0);
             case 'f':
                 if (sscanf(argv[i + 1], "%s", file_name) == 0)
                 {
