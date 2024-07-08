@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     statistics stats;
     char file_name[50];
     uint8_t month_num = 0;
+    uint32_t real_count_of_elements = 0;
     for (size_t i = 0; i < argc; i++)
     {
         if (argv[i][0] == '-')
@@ -54,8 +55,8 @@ int main(int argc, char *argv[])
             }
         }
     }
-    readFromFile(file_name, info);
-    stats_collect(info, month_num, COUNT_OF_ELEMENTS, &stats);
+    real_count_of_elements = readFromFile(file_name, info);
+    stats_collect(info, month_num, real_count_of_elements, &stats);
     if (month_num != 0)
     {
         printf("min temp in %d month = %d\n", month_num, stats.min_tmp_month);

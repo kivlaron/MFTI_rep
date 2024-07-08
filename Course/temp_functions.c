@@ -40,6 +40,10 @@ _Bool errors(uint8_t err_code, char str[], uint32_t str_num)
         printf("Code error = %d, Incorrect day format\n", err_code);
         printf("In string number %d: %s\n\n", str_num, str);
         break;
+    case 6:
+        printf("Code error = %d, Incorrect temperature format\n", err_code);
+        printf("In string number %d: %s\n\n", str_num, str);
+        break;
     case 10:
         printf("Code error = %d, Error working with file\n", err_code);
         printf("In string number %d: %s\n\n", str_num, str);
@@ -309,7 +313,7 @@ void addTemperature(struct sensor info[], uint32_t number, int8_t temperature)
     info[number].temperature = temperature;
 }
 
-void readFromFile(char file_name[], struct sensor info[]) // Add datas from file to massive of struct
+uint32_t readFromFile(char file_name[], struct sensor info[]) // Add datas from file to massive of struct
 {
     FILE *f;
     char str[30] = {0};
@@ -360,6 +364,7 @@ void readFromFile(char file_name[], struct sensor info[]) // Add datas from file
         printf("Can`t open the file %s\n", file_name);
     }
     fclose(f);
+    return str_num - 1;
 }
 
 void stats_collect(struct sensor info[], uint8_t month_number, uint32_t count, statistics *stats)
@@ -367,13 +372,8 @@ void stats_collect(struct sensor info[], uint8_t month_number, uint32_t count, s
     int32_t avr_t_m = 0, avr_t_y = 0;
     int8_t min_t_m = 127, min_t_y = 127;
     int8_t max_t_m = -128, max_t_y = -128;
-    uint16_t measure_m_num = 0;
-    uint32_t measure_y_num = 0;
+    int32_t measure_m_num = 0, measure_y_num = 0;
 
-    stats->max_tmp_month = 0;
-    0;
-    stats->min_tmp_month = 0;
-    stats->min_tmp_year = 0;
     for (size_t i = 0; i < count; i++)
     {
         if (month_number != 0)

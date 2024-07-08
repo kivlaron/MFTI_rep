@@ -20,7 +20,7 @@ typedef struct {
     int8_t max_tmp_year;
 } statistics;
 
-void readFromFile(char file_name[], struct sensor info[]);
+uint32_t readFromFile(char file_name[], struct sensor info[]);
 void addYear(struct sensor info[], uint32_t number, uint16_t year);
 void addMonth(struct sensor info[], uint32_t number, uint8_t month);
 void addDay(struct sensor info[], uint32_t number, uint8_t day);
